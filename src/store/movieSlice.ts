@@ -1,21 +1,48 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
+export interface Movie {
+  id: string;
+  title: string;
+  year: number;
+  description: string;
+  category: string[];
+  rating: string;
+  image: string;
+  actors: {
+    name: string;
+    surname: string;
+  };
+}
+
+export type Movies = Array<Movie>;
+
+export interface MovieState {
+  loading: boolean;
+  movies: {
+    results?: Movies;
+  };
+  error: string;
+}
+
 const fetchMovieData = createAsyncThunk("movie/fetchMoviesData", async () => {
   const response = await axios.get(
-    "https://api.themoviedb.org/3/movie/11?api_key=70c2db40c936ec13adfbb528363439b7"
+    `https://api.themoviedb.org/3/movie/popular?api_key=70c2db40c936ec13adfbb528363439b7`
   );
   const movies = await response.data;
+  console.log(movies);
   return movies;
 });
 
+const initialState: MovieState = {
+  loading: false,
+  movies: {},
+  error: "",
+};
+
 const movieSlice = createSlice({
   name: "movie",
-  initialState: {
-    loading: false,
-    movies: null,
-    error: "",
-  },
+  initialState,
   reducers: {},
   extraReducers: (builder) => {
     builder
