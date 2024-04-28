@@ -1,19 +1,34 @@
-import { useState } from "react";
+import { useEffect } from "react";
+import { fetchMovieData } from "../store/movieSlice";
+import { useAppSelector, useAppDispatch } from "../app/hooks";
+import { Link } from "react-router-dom";
 
-function MoviesPage() {
-  const [count, setCount] = useState(0);
+const MoviesPage = () => {
+  const dispatch = useAppDispatch();
+  const { movies, loading, error } = useAppSelector((state) => state.movies);
+
+  useEffect(() => {
+    dispatch(fetchMovieData());
+  }, []);
+  console.log(error);
+
+  if (error) {
+    return <h2>Ошибка, попробуйте позже</h2>;
+  }
+
+  if (loading) {
+    return <h2>Загрузка....</h2>;
+  }
 
   return (
     <>
-      <h1>Vite + React</h1>
-
+      <div>dadad</div>
       <div>
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
+        <ul>{movies?.title}</ul>
       </div>
+      <Link to={"search"}>111</Link>
     </>
   );
-}
+};
 
 export default MoviesPage;
