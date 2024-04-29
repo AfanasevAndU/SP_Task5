@@ -1,3 +1,5 @@
+import { Movie } from "../../../store/movieSlice";
+
 /**
  * интерфейс компонента Card.
  */
@@ -9,19 +11,9 @@ export interface CardProps {
   /**
    * Фильм
    */
-  film: Film;
-}
-
-export interface Film {
-  id: string;
-  title: string;
-  year: number;
-  description: string;
-  category: string[];
-  rating: string;
-  image: string;
-  actors: {
-    name: string;
-    surname: string;
-  };
+  movie: Movie;
+  /**
+   *
+   */
+  children?: React.ReactElement;
 }

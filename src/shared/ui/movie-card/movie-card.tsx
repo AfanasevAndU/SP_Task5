@@ -9,15 +9,16 @@ import {
   MovieTitle,
 } from "./movie-card.styles";
 
-export const Card: FC<CardProps> = ({ film, id }) => {
+export const MovieCard: FC<CardProps> = ({ movie, id, children }) => {
   return (
     <CardContainer id={id}>
-      <MovieId>{film.id}</MovieId>
-      <MovieImage src={film.image}></MovieImage>
+      <MovieId>{movie.id}</MovieId>
+      <MovieImage src={movie.poster_path}></MovieImage>
       <MovieInformation>
-        <MovieTitle>{film.title}</MovieTitle>
+        <MovieTitle>{movie.title}</MovieTitle>
         <MovieDescription>
-          Год выпуска: {film.year} Категории: {film.category}
+          Год выпуска: {movie.release_date}
+          <div>Категории:{children}</div>
         </MovieDescription>
       </MovieInformation>
     </CardContainer>

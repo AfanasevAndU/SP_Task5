@@ -4,11 +4,11 @@ import axios from "axios";
 export interface Movie {
   id: string;
   title: string;
-  year: number;
+  release_date: string;
   description: string;
-  category: string[];
+  genre_ids: string[];
   rating: string;
-  image: string;
+  poster_path: string;
   actors: {
     name: string;
     surname: string;
@@ -58,6 +58,7 @@ const movieSlice = createSlice({
         state.loading = false;
         state.error = "Ошибка";
       });
+    builder;
   },
 });
 
