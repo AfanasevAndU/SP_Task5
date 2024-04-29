@@ -7,7 +7,7 @@ export interface CardProps {
   /**
    * Задает id в DOM дереве для компонента.
    */
-  id?: string;
+  id?: number;
   /**
    * Фильм
    */

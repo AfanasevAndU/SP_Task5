@@ -5,19 +5,19 @@ import {
   MovieDescription,
   MovieInformation,
   MovieId,
-  MovieImage,
   MovieTitle,
+  MovieSeparator,
 } from "./movie-card.styles";
 
 export const MovieCard: FC<CardProps> = ({ movie, id, children }) => {
   return (
-    <CardContainer id={id}>
-      <MovieId>{movie.id}</MovieId>
-      <MovieImage src={movie.poster_path}></MovieImage>
+    <CardContainer>
+      <MovieId>{id}</MovieId>
+      <MovieSeparator></MovieSeparator>
       <MovieInformation>
         <MovieTitle>{movie.title}</MovieTitle>
         <MovieDescription>
-          Год выпуска: {movie.release_date}
+          Год выпуска: {movie.release_date} Рейтинг: {movie.vote_average}
           <div>Категории:{children}</div>
         </MovieDescription>
       </MovieInformation>

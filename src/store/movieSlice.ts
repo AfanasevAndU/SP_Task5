@@ -2,12 +2,12 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
 export interface Movie {
-  id: string;
+  id: number;
   title: string;
   release_date: string;
   description: string;
   genre_ids: string[];
-  rating: string;
+  vote_average: number;
   poster_path: string;
   actors: {
     name: string;

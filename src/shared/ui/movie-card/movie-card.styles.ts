@@ -31,7 +31,7 @@ export const MovieTitle = styled.div`
 
 export const MovieId = styled.div`
   padding-left: 10px;
-  padding-top: 10px;
+  padding-top: 7px;
   font-weight: bold;
 `;
 
@@ -44,7 +44,14 @@ export const MovieImage = styled.img`
 
 export const MovieDescription = styled.div`
   padding-top: 5px;
-  font-size: 15px;
+  font-size: 20px;
   max-width: 100%;
   max-height: 100%;
+`;
+
+export const MovieSeparator = styled.div`
+  position: center;
+  width: 1px;
+  height: 150px;
+  background-color: black;
 `;
