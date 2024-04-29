@@ -9,8 +9,8 @@ export type Genres = Array<Genre>;
 
 export interface GenreState {
   loading: boolean;
-  genres: {
-    genre?: Genres;
+  genre: {
+    genres?: Genres;
   };
   error: string;
 }
@@ -26,7 +26,7 @@ const fetchGenresData = createAsyncThunk("movie/fetchGenresData", async () => {
 
 const initialState: GenreState = {
   loading: false,
-  genres: {},
+  genre: {},
   error: "",
 };
 
@@ -42,7 +42,7 @@ const genreSlice = createSlice({
       })
       .addCase(fetchGenresData.fulfilled, (state, action) => {
         state.loading = false;
-        state.genres = action.payload;
+        state.genre = action.payload;
       })
       .addCase(fetchGenresData.rejected, (state) => {
         state.loading = false;
