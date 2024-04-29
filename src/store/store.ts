@@ -5,7 +5,7 @@ import genreSlice from "./genre.Slice.ts";
 const store = configureStore({
   reducer: {
     movies: movieSlice,
-    genre: genreSlice,
+    genres: genreSlice,
   },
 });
 

@@ -7,11 +7,10 @@ export interface Genre {
 }
 export type Genres = Array<Genre>;
 
-//TODO рефакторинг
 export interface GenreState {
   loading: boolean;
-  genre: {
-    genres?: Genres;
+  genres: {
+    genre?: Genres;
   };
   error: string;
 }
@@ -20,14 +19,14 @@ const fetchGenresData = createAsyncThunk("movie/fetchGenresData", async () => {
   const response = await axios.get(
     `https://api.themoviedb.org/3/genre/movie/list?api_key=70c2db40c936ec13adfbb528363439b7`
   );
-  const genre = await response.data;
-  console.log(genre);
-  return genre;
+  const genres = await response.data;
+  console.log(genres);
+  return genres;
 });
 
 const initialState: GenreState = {
   loading: false,
-  genre: {},
+  genres: {},
   error: "",
 };
 
@@ -43,7 +42,7 @@ const genreSlice = createSlice({
       })
       .addCase(fetchGenresData.fulfilled, (state, action) => {
         state.loading = false;
-        state.genre = action.payload;
+        state.genres = action.payload;
       })
       .addCase(fetchGenresData.rejected, (state) => {
         state.loading = false;
