@@ -2,13 +2,14 @@ import styled from "styled-components";
 
 export const CardContainer = styled.div`
   width: 800px;
-  height: 150px;
+  min-height: 180px;
   background-color: white;
   border-radius: 12px;
   border-top: 1px solid;
   border-bottom: 1px solid;
   border-color: black;
   margin-top: 10px;
+  margin-bottom: 10px;
   flex-direction: row;
   display: flex;
   gap: 10px;
@@ -33,6 +34,7 @@ export const MovieId = styled.div`
   padding-left: 10px;
   padding-top: 7px;
   font-weight: bold;
+  min-width: 20px;
 `;
 
 export const MovieImage = styled.img`
@@ -45,13 +47,13 @@ export const MovieImage = styled.img`
 export const MovieDescription = styled.div`
   padding-top: 5px;
   font-size: 20px;
-  max-width: 100%;
+  width: 500px;
   max-height: 100%;
 `;
 
 export const MovieSeparator = styled.div`
   position: center;
   width: 1px;
-  height: 150px;
+  height: 180px;
   background-color: black;
 `;

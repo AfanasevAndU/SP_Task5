@@ -11,4 +11,5 @@ export const StyledContainer = styled.div<ContainerProps>`
   color: black;
   font-size: 15px;
   font-weight: bold;
+  align-items: center;
 `;
