@@ -14,13 +14,13 @@ export const Sidebar: React.FC<SidebarProps> = () => {
 
   return (
     <SidebarContainer>
-      <h2>Избранные фильмы: </h2>
+      <h2>Избранное: </h2>
       <SidebarItem>
         {favoriteMovies.map((movie: Movie) => (
           <li key={movie.id}>{movie.title}</li>
         ))}
       </SidebarItem>
-      <h2>Фильмы для просмотра позже: </h2>
+      <h2>Посмотреть позже: </h2>
       <SidebarItem>
         {watchLaterMovies.map((movie: Movie) => (
           <li key={movie.id}>{movie.title}</li>
