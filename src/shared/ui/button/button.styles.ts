@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { ButtonProps } from "./button.types";
 
 export const StyledButton = styled.button<ButtonProps>`
-  width: ${(props) => (props.type === "reset" ? "50px" : "160px")};
+  min-width: ${(props) => (props.type === "reset" ? "50px" : "150px")};
   height: ${(props) => (props.type === "reset" ? "30px" : "40px")};
   font-size: 16px;
   background: ${(props) => (props.type === "reset" ? "#CD5C5C" : "#4676D7")};

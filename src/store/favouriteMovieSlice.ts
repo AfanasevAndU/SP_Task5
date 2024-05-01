@@ -18,9 +18,9 @@ const favouriteMovieSlice = createSlice({
       state.movies.push(newMovie);
     },
     removeMovieFromFavourites(state, action) {
-      const movieIdToRemove = action.payload;
+      const movieToRemove = action.payload;
       state.movies = state.movies.filter(
-        (movie) => movie.id !== movieIdToRemove
+        (movie) => movie.id !== movieToRemove.id
       );
     },
   },

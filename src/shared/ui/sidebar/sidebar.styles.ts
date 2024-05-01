@@ -11,3 +11,8 @@ export const SidebarContainer = styled.div`
   overflow-y: auto; /* Включить вертикальную прокрутку, если контент слишком высокий */
   border-left: 1px solid #ddd; /* Добавить левую границу для отделения от основного контента */
 `;
+
+export const SidebarItem = styled.ul`
+  padding: 0px 20px 0px;
+  font-size: 18px;
+`;

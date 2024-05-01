@@ -2,6 +2,7 @@ import React from "react";
 import { useAppSelector } from "../../../app/hooks";
 import { Movie } from "../../../store/movieSlice";
 import { SidebarProps } from "./sidebar.types";
+import { SidebarContainer, SidebarItem } from "./sidebar.styles";
 
 export const Sidebar: React.FC<SidebarProps> = () => {
   const favoriteMovies = useAppSelector(
@@ -12,20 +13,20 @@ export const Sidebar: React.FC<SidebarProps> = () => {
   );
 
   return (
-    <div>
+    <SidebarContainer>
       <h2>Избранные фильмы: </h2>
-      <ul>
+      <SidebarItem>
         {favoriteMovies.map((movie: Movie) => (
           <li key={movie.id}>{movie.title}</li>
         ))}
-      </ul>
+      </SidebarItem>
       <h2>Фильмы для просмотра позже: </h2>
-      <ul>
+      <SidebarItem>
         {watchLaterMovies.map((movie: Movie) => (
           <li key={movie.id}>{movie.title}</li>
         ))}
-      </ul>
-    </div>
+      </SidebarItem>
+    </SidebarContainer>
   );
 };
 

@@ -18,9 +18,9 @@ const watchLaterMovieSlice = createSlice({
       state.movies.push(newMovie);
     },
     removeMovieFromWatchLater(state, action) {
-      const movieIdToRemove = action.payload;
+      const movieToRemove = action.payload;
       state.movies = state.movies.filter(
-        (movie) => movie.id !== movieIdToRemove
+        (movie) => movie.id !== movieToRemove.id
       );
     },
   },
