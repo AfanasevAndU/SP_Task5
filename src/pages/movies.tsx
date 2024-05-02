@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
-import { Movie, fetchMovieData } from "../store/movieSlice";
+import { Movie, fetchMovieData, updateMovies } from "../store/movieSlice";
 import { fetchGenresData } from "../store/genre.Slice";
 import { useAppSelector, useAppDispatch } from "../app/hooks";
 import { MovieCard } from "../shared/ui/movie-card/movie-card";
 import { Container } from "../shared/ui/container";
 import { Button } from "../shared/ui/button";
+
 import {
   addMovieToFavourites,
   removeMovieFromFavourites,
@@ -13,6 +14,8 @@ import {
   addMovieToWatchLater,
   removeMovieFromWatchLater,
 } from "../store/watchLaterMovieSlice";
+import { Select } from "../shared/ui/select";
+import { Option } from "../shared/ui/select/select.types";
 
 const MoviesPage = () => {
   const dispatch = useAppDispatch();
@@ -34,8 +37,11 @@ const MoviesPage = () => {
   const [watchLaterButtonStates, setWatchLaterButtonStates] = useState<{
     [key: string]: string;
   }>({});
+  const [sortState, setSortState] = useState<
+    "Высокому рейтингу" | "Низкому рейтингу"
+  >("Высокому рейтингу");
 
-  //const [sortState, setSortState] = useState<"high rating" | "low rating">();
+  const [selectedGenre, setSelectedGenre] = useState<Option | null>(null);
 
   useEffect(() => {
     dispatch(fetchMovieData());
@@ -43,6 +49,7 @@ const MoviesPage = () => {
   }, [dispatch]);
 
   useEffect(() => {
+    // Установка начальных состояний кнопок "Избранное" и "Посмотреть позже"
     const defaultFavouriteButtonStates = movies?.results?.reduce(
       (button, movie) => {
         button[movie.id] = "Избранное";
@@ -108,7 +115,17 @@ const MoviesPage = () => {
     setWatchLaterButtonStates(newState);
   };
 
-  /*const handleSortByRating = () => {
+  const handleGenreChange = (selectedGenre: Option | null) => {
+    setSelectedGenre(selectedGenre);
+    console.log(selectedGenre);
+  };
+
+  const HandleGenreReset = () => {
+    setSelectedGenre(null);
+    console.log(selectedGenre);
+  };
+
+  const handleSortByRating = () => {
     if (!movies.results) {
       console.error("Список фильмов пустой или неопределенный");
       return;
@@ -116,45 +133,58 @@ const MoviesPage = () => {
 
     const sortedMovies = [...movies.results];
     sortedMovies.sort((a, b) => {
-      if (sortState === "high rating") {
-        return a.vote_average - b.vote_average;
-      } else {
+      if (sortState === "Высокому рейтингу") {
         return b.vote_average - a.vote_average;
+      } else {
+        return a.vote_average - b.vote_average;
       }
     });
 
     dispatch(updateMovies({ results: sortedMovies }));
 
-    setSortState(sortState === "high rating" ? "low rating" : "high rating");
+    setSortState(
+      sortState === "Высокому рейтингу"
+        ? "Низкому рейтингу"
+        : "Высокому рейтингу"
+    );
   };
-*/
+
+  const filteredMovies = movies?.results?.filter((movie) => {
+    return selectedGenre ? movie.genre_ids.includes(selectedGenre.id) : true;
+  });
+
   return (
     <>
       <Container flexDirection="row">
         <div>Сортировать по: </div>
-        <Button>Высокому рейтингу</Button>
-        <Button>Низкому рейтингу</Button>
+        <Button onClick={handleSortByRating}>{sortState}</Button>
+        <Select options={genre.genres || []} onChange={handleGenreChange} />
+        <Button onClick={HandleGenreReset}>Сбросить фильтры</Button>
       </Container>
       <div>
-        {movies?.results?.map((movie, index) => (
-          <MovieCard key={movie.id} movie={movie} id={index + 1}>
-            <>
-              <div>{handleGenresForMovie(movie.genre_ids)}</div>
-              <Button
-                onClick={() => handleFavourites(movie)}
-                id={String(movie.id)}
-              >
-                {favouriteButtonStates[String(movie.id)]}
-              </Button>
-              <Button
-                onClick={() => handleWatchLater(movie)}
-                id={String(movie.id)}
-              >
-                {watchLaterButtonStates[String(movie.id)]}
-              </Button>
-            </>
-          </MovieCard>
-        ))}
+        {filteredMovies?.length === 0 ? (
+          <h2>Фильмов с такой категорией нет.</h2>
+        ) : (
+          filteredMovies?.map((movie, index) => (
+            <MovieCard key={movie.id} movie={movie} id={index + 1}>
+              <>
+                <div>{handleGenresForMovie(movie.genre_ids)}</div>
+                <Button
+                  onClick={() => handleFavourites(movie)}
+                  id={String(movie.id)}
+                >
+                  {favouriteButtonStates[String(movie.id)]}
+                </Button>
+                <Button
+                  onClick={() => handleWatchLater(movie)}
+                  id={String(movie.id)}
+                >
+                  {watchLaterButtonStates[String(movie.id)]}
+                </Button>
+              </>
+            </MovieCard>
+          ))
+        )}
       </div>
     </>
   );

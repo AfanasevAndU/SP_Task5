@@ -8,8 +8,8 @@ export const SidebarContainer = styled.div`
   height: 100%;
   background-color: #f4f4f4;
   padding: 20px;
-  overflow-y: auto; /* Включить вертикальную прокрутку, если контент слишком высокий */
-  border-left: 1px solid #ddd; /* Добавить левую границу для отделения от основного контента */
+  overflow-y: auto;
+  border-left: 1px solid #ddd; ]
 `;
 
 export const SidebarItem = styled.ul`
