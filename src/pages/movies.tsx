@@ -158,7 +158,11 @@ const MoviesPage = () => {
       <Container flexDirection="row">
         <div>Сортировать по: </div>
         <Button onClick={handleSortByRating}>{sortState}</Button>
-        <Select options={genre.genres || []} onChange={handleGenreChange} />
+        <Select
+          options={genre.genres || []}
+          onChange={handleGenreChange}
+          title={selectedGenre?.name}
+        />
         <Button onClick={HandleGenreReset}>Сбросить фильтры</Button>
       </Container>
       <div>

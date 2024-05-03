@@ -1,13 +1,14 @@
-// Select.tsx
 import React, { useState, useEffect } from "react";
 import { SelectProps, Option } from "./select.types";
+import { StyledSelect, StyledSelectedOption } from "./select.styles";
 
 export const Select: React.FC<SelectProps> = ({
   selected,
   options,
   onClose,
   onChange,
-  placeholder = "Жанру",
+  title = "11",
+  placeholder = "Жанру: ",
 }) => {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -37,15 +38,21 @@ export const Select: React.FC<SelectProps> = ({
 
   return (
     <div className="select">
-      <div className="selected" onClick={toggleDropdown}>
+      <StyledSelect onClick={toggleDropdown} className="selected">
         {selected ? selected.name : placeholder}
-      </div>
+        {title}
+      </StyledSelect>
       {isOpen && (
-        <ul className="options">
+        <ul>
           {options.map((option) => (
-            <li key={option.id} onClick={() => handleOptionClick(option)}>
+            <StyledSelectedOption
+              key={option.id}
+              onClick={() => handleOptionClick(option)}
+              isSelected={option.id === selected?.id}
+              className="options"
+            >
               {option.name}
-            </li>
+            </StyledSelectedOption>
           ))}
         </ul>
       )}

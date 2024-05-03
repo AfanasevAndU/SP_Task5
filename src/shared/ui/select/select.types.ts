@@ -9,4 +9,5 @@ export interface SelectProps {
   onClose?: () => void;
   onChange: (selected: Option | null) => void;
   placeholder?: string;
+  title?: string;
 }
