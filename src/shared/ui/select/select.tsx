@@ -7,7 +7,7 @@ export const Select: React.FC<SelectProps> = ({
   options,
   onClose,
   onChange,
-  title = "11",
+  title = "",
   placeholder = "Жанру: ",
 }) => {
   const [isOpen, setIsOpen] = useState(false);
