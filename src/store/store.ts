@@ -3,6 +3,7 @@ import movieSlice from "./movieSlice.ts";
 import genreSlice from "./genre.Slice.ts";
 import favouriteMovieSlice from "./favouriteMovieSlice.ts";
 import watchLaterMovieSlice from "./watchLaterMovieSlice.ts";
+import commentSlice from "./commentSlice.ts";
 
 const store = configureStore({
   reducer: {
@@ -10,6 +11,7 @@ const store = configureStore({
     genres: genreSlice,
     favouriteMovies: favouriteMovieSlice,
     watchLaterMovies: watchLaterMovieSlice,
+    comments: commentSlice,
   },
 });
 
