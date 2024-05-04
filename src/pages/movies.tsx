@@ -73,7 +73,7 @@ const MoviesPage = () => {
   }, [movies]);
 
   if (moviesError || genresError) {
-    return <h2>Ошибка, попробуйте позже</h2>;
+    return <h2>Ошибка, попробуйте включить VPN</h2>;
   }
 
   if (moviesLoading || genresLoading) {
@@ -117,12 +117,10 @@ const MoviesPage = () => {
 
   const handleGenreChange = (selectedGenre: Option | null) => {
     setSelectedGenre(selectedGenre);
-    console.log(selectedGenre);
   };
 
   const HandleGenreReset = () => {
     setSelectedGenre(null);
-    console.log(selectedGenre);
   };
 
   const handleSortByRating = () => {

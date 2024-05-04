@@ -49,7 +49,8 @@ function MoviePage() {
           <h1>{movie.title}</h1>
           <p>Рейтинг фильма: {movie.vote_average}</p>
           <img src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} />
-          <p>{movie.overview}</p>
+          <div style={{ width: "750px" }}>{movie.overview}</div>
+
           <h2>Комментарии к фильму</h2>
           <div>
             {comments

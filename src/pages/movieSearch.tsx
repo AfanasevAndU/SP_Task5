@@ -118,7 +118,8 @@ function MovieSearchPage() {
         </Form>
       </Container>
       <div>
-        {filteredMovies?.length === movies.results?.length ? (
+        {filteredMovies?.length === movies.results?.length ||
+        filteredMovies.length === 0 ? (
           <h2>Введите название фильма или выберите жанр</h2>
         ) : (
           filteredMovies.map((movie, index) => (

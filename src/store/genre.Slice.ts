@@ -20,7 +20,6 @@ const fetchGenresData = createAsyncThunk("movie/fetchGenresData", async () => {
     `https://api.themoviedb.org/3/genre/movie/list?api_key=70c2db40c936ec13adfbb528363439b7`
   );
   const genres = await response.data;
-  console.log(genres);
   return genres;
 });
 

@@ -1,30 +1,31 @@
-# React + TypeScript + Vite
+# SPA по фильмам
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Одностраничное приложение по работе с различными фильмами
 
-Currently, two official plugins are available:
+# Документация по запуску
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Клонирование репозитория:
 
-## Expanding the ESLint configuration
+`git clone https://github.com/AfanasevAndU/SP_task2.git`
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Запуск приложения
 
-- Configure the top-level `parserOptions` property like this:
+Установка зависимостей: `yarn install`
+Запуск: `yarn dev`
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
+## Запрос к API выполняется успешно только с включенным VPN.
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+# Функционал
+
+Реализовано
+
+- Запрос популярных фильмов с API на главной странице приложения, фильтрация их по жанрам и рейтингам.
+- Страница поиска фильмов по названию.
+- Возможность добавлять фильмы в "избранное" и "посмотреть позже".
+- Страница каждого фильма - открывается по клику на название фильма в его карточке.
+- Возможность оставлять комментарии на странице фильма.
+
+Не получилось реализовать:
+
+- Поиск сразу по жанру и по имени фильма.
+- Не реализован компонент Checkbox.

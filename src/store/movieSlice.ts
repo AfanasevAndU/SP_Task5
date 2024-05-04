@@ -24,7 +24,7 @@ const fetchMovieData = createAsyncThunk("movie/fetchMoviesData", async () => {
     `https://api.themoviedb.org/3/movie/popular?api_key=70c2db40c936ec13adfbb528363439b7`
   );
   const movies = await response.data;
-  console.log(movies);
+
   return movies;
 });
 
