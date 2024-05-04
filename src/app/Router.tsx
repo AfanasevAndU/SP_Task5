@@ -7,7 +7,7 @@ const Router = () => {
   return (
     <Routes>
       <Route path="/" element={<MoviesPage />}></Route>
-      <Route path="/movie" element={<MoviePage />}></Route>
+      <Route path="/movie/:id" element={<MoviePage />}></Route>
       <Route path="/search" element={<MovieSearchPage />}></Route>
     </Routes>
   );

@@ -5,14 +5,8 @@ export interface Movie {
   id: number;
   title: string;
   release_date: string;
-  description: string;
   genre_ids: string[];
   vote_average: number;
-  poster_path: string;
-  actors: {
-    name: string;
-    surname: string;
-  };
 }
 
 export type Movies = Array<Movie>;
