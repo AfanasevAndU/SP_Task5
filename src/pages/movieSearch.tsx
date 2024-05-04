@@ -5,8 +5,7 @@ import { MovieCard } from "../shared/ui/movie-card";
 import { useEffect, useState } from "react";
 import { Movie } from "../store/movieSlice";
 import { Button } from "../shared/ui/button";
-import { Select } from "../shared/ui/select";
-import { Option } from "../shared/ui/select";
+
 import {
   addMovieToFavourites,
   removeMovieFromFavourites,
@@ -15,6 +14,7 @@ import {
   addMovieToWatchLater,
   removeMovieFromWatchLater,
 } from "../store/watchLaterMovieSlice";
+import { Form } from "../shared/ui/form";
 
 function MovieSearchPage() {
   const dispatch = useAppDispatch();
@@ -34,8 +34,6 @@ function MovieSearchPage() {
   const [filteredMovies, setFilteredMovies] = useState<Movie[]>(
     movies.results || []
   );
-
-  const [selectedGenre, setSelectedGenre] = useState<Option | null>(null);
 
   useEffect(() => {
     setFilteredMovies(movies.results || []);
@@ -64,15 +62,6 @@ function MovieSearchPage() {
       setWatchLaterButtonStates(defaultWatchLaterButtonStates);
     }
   }, [movies]);
-
-  const handleSearch = (searchTerm: string) => {
-    setSearchTerm(searchTerm);
-    const filtered =
-      movies.results?.filter((movie) =>
-        movie.title.toLowerCase().includes(searchTerm.toLowerCase())
-      ) || [];
-    setFilteredMovies(filtered);
-  };
 
   const handleFavourites = (movie: Movie) => {
     const movieId = String(movie.id);
@@ -109,11 +98,10 @@ function MovieSearchPage() {
     });
   };
 
-  const handleGenreChange = (selectedGenre: Option | null) => {
-    setSelectedGenre(selectedGenre);
+  const handleSearch = (searchTerm: string) => {
     const filtered =
       movies.results?.filter((movie) =>
-        selectedGenre ? movie.genre_ids.includes(selectedGenre.id) : true
+        movie.title.toLowerCase().includes(searchTerm.toLowerCase())
       ) || [];
     setFilteredMovies(filtered);
   };
@@ -121,18 +109,16 @@ function MovieSearchPage() {
   return (
     <>
       <Container flexDirection="row">
-        <div>Поиск по названию: </div>
-        <Input placeholder="Название фильма" onChange={handleSearch}></Input>
-        <Select
-          options={genre.genres || []}
-          onChange={handleGenreChange}
-          title={selectedGenre?.name}
-        />
+        <Form onSubmit={() => handleSearch(searchTerm)}>
+          <div>Поиск по названию: </div>
+          <Input
+            placeholder="Название фильма"
+            onChange={(value) => setSearchTerm(value)}
+          ></Input>
+        </Form>
       </Container>
       <div>
-        {filteredMovies?.length === movies.results?.length &&
-        !selectedGenre &&
-        !searchTerm ? (
+        {filteredMovies?.length === movies.results?.length ? (
           <h2>Введите название фильма или выберите жанр</h2>
         ) : (
           filteredMovies.map((movie, index) => (
